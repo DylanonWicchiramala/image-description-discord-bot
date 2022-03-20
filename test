@@ -1,0 +1,4 @@
+import requests 
+
+url = 'https://miro.medium.com/max/593/1*K68boX7fmtsYmyG2LlcmhQ.jpeg'
+print(type(requests.get(url, stream=True).raw))
