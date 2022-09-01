@@ -7,10 +7,12 @@ from matplotlib.pyplot import imshow,show
 from uuid import uuid4
 import shutil
 from ImageDescriptor import ImageDescriptor
+import traceback
 
 # bot URL: https://discord.com/api/oauth2/authorize?client_id=942393785009176676&permissions=8&scope=bot
-
-client = discord.Client()
+# intents = discord.Intents.default()
+intents = discord.Intents(0, messages=True, message_content=True)
+client = discord.Client(intents = intents)
 # client = commands.Bot(command_prefix='.')
 
 
@@ -25,7 +27,8 @@ async def on_message(message):
         # to make bot ignore message by it self.
         if message.author == client.user:
             return
-        
+        print(message.content)
+        print(message.attachments)
         url = message.attachments[0].url
         content = message.content
         user = message.author
@@ -33,6 +36,7 @@ async def on_message(message):
                 
     except IndexError:
         print('No attachment found')
+        # traceback.print_exc()
         
     else:
         # cheak if attachment is 'image' 

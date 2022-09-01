@@ -31,9 +31,6 @@ class ImageDescriptor:
 if __name__ == '__main__':
     image_uri = 'gs://cloud-samples-data/vision/using_curl/shanghai.jpeg'
 
-    client = vision.ImageAnnotatorClient()
-    image = vision.Image()
-    image.source.image_uri = image_uri
-
-    response = client.label_detection(image=image)
-    print(response.label_annotations[0].description)
+    model = ImageDescriptor('img/13f03c70-0116-4627-8490-dd98f97d70b0.jpg')
+    txt = model.get_description()
+    print(txt)
